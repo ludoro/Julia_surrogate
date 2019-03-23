@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper,oneside,titlepage,openright]{book}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{subfigure}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage{titling}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{systeme}
+
+\begin{document} 
+\title{Accelerating optimization via machine learning with different surrogate models}
+\author{Ludovico Bessi}
+
+\date{23 March 2019}
+\maketitle
+
+
+
+%%1
+\chapter*{Introduction}
+
+A surrogate model is an approximation method that mimics the behavior of a computationally expensive simulation.\\
+The exact working of the simulation is not assumed to be known, solely the input-output behavior is important. \\
+For this reason, a model is constructed based on the response of the simulator to a limited number of chosen data points.\\\\
+In more mathematical terms: suppose we are attempting to optimize a function $f(p)$, but each calculation of f is very expensive. It may be the case we need to solve a PDE for each point or use advanced numerical linear algebra machinery which is usually costly. 
+The idea is then to develop a surrogate model $g$ which approximates f by training on previous data collected from evaluations of $f$.\\\\
+There are many ways for building a surrogate model. Just to name a few, we can use: radial basis functions, neural networks, random forests, support vector machines and Gaussian processes. It is worth noting that the nature of the function is not known a priori so usually it  is not clear \textit{which} surrogate model will be the most accurate.\\\\
+The construction of a surrogate model can be seen as a three steps process:
+\begin{itemize}
+\item[1]\textbf{Sample selection}
+\item[2]\textbf{Construction of the surrogate model and optimizing the parameters}
+\item[3]\textbf{Accuracy appraisal of the surrogate}
+\end{itemize}
+The accuracy of the surrogate depends on the number and location of samples in the design space. 
+\newpage
+
+\section*{Example} 
+Let's consider the parametrized system of Lotka-Volterra equations: 
+\[
+\tag{1}
+\systeme*{\frac{dx}{dt} =(A-By)x, \frac{dy}{dt} = (Cx-D)y}
+\label{eqnlotka}
+\]
+This system is made up of two non linear differential equations. \\It can be solved numerically, but let's try to build the simplest possible surrogate model: a \textit{linear model}. \\Before diving into the overview of Julia implementation, it is worth noting that it cannot be expected that such a surrogate will work well, simply because it will try to model the system linearly, but \eqref{eqnlotka} is non- linear. \\\\
+Our surrogate should work like this: with $[A,B,C,D]$ as input, we want to be able to calculate the solution $(x,y)$ at a time $t^*$.\\
+We proceed as follows: 
+
+\begin{itemize}
+\item[1] Solve the system in an interval $(t_{min},t_{max})$ for $n$ times with random input $[A,B,C,D]$. 
+\item[2] Use the library $GLM$ to build a linear model out of the samples.
+\item[3] Use model to find solution at time $t^*$.
+\end{itemize}
+
+
+%%2
+\chapter*{Proposal}
+
+
+%%3
+\chapter*{Timeline}
+
+\subsubsection*{6th May - 27th May -- Bonding time}
+
+\begin{itemize}
+\item[--] 
+\item[--] 
+\item[--] 
+\end{itemize}
+
+\subsubsection*{28th May - 28th June -- }
+
+\begin{itemize}
+\item[--] 
+\item[--] 
+\end{itemize}
+
+\subsubsection*{29th June - 26th July -- }
+
+From 28th of June to approximately 3th of July I will be under exams, therefore my output will be reduced in this timeline. \\
+\begin{itemize}
+\item[--]
+\item[--] 
+\end{itemize}
+
+\subsubsection*{27th July - 26th August -- }
+I have left more time than necessary in this last month to account for problems that might have occurred along the way. I will be on vocation for a few days with my girlfriend as well. \\
+\begin{itemize}
+\item[--]
+\item[--] \textbf{Bonus:} Start developing surrogate models using Gaussian processes.
+\end{itemize}
+
+
+
+%% 4
+\chapter*{About me}
+
+I am a third year applied mathematics student at Politecnico di Torino, Italy. I know how to code in Python, C, R, Matlab and Julia. I have a strong background in \textbf{Probability theory} and \textbf{statistics}, thanks to a \textit{measure theory} based course.\\\\ 
+I am working as a Data scientist for "Policumbent", a team at my University that is building the fastest bike on earth.\\\\
+I won an Hackaton with a machine learning project based on Keras. You can find my CV and more information about on my personal webite:  https://ludoro.github.io  
+\\\\
+Contact information: 
+
+\begin{itemize}
+\item Mobile phone: +39 3467172332
+\item Email: ludovicobessi@gmail.com
+\item GitHub: @ludoro 
+\item Slack: @ludoro
+
+\end{itemize}
+ 
+ Contact information in case of emergency: +39 360882130 (Father).
+\end{document}
+
+
+
+

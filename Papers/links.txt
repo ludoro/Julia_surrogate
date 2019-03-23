@@ -1,0 +1,1 @@
+http://stor-i.github.io/GaussianProcesses.jl/latest/
