@@ -12,6 +12,8 @@
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{systeme}
+\usepackage{cool}
+\usepackage{mathtools} 
 
 \begin{document} 
 \title{Accelerating optimization via machine learning with different surrogate models}
@@ -24,13 +26,12 @@
 
 %%1
 \chapter*{Introduction}
-
 A surrogate model is an approximation method that mimics the behavior of a computationally expensive simulation.\\
 The exact working of the simulation is not assumed to be known, solely the input-output behavior is important. \\
 For this reason, a model is constructed based on the response of the simulator to a limited number of chosen data points.\\\\
 In more mathematical terms: suppose we are attempting to optimize a function $f(p)$, but each calculation of f is very expensive. It may be the case we need to solve a PDE for each point or use advanced numerical linear algebra machinery which is usually costly. 
 The idea is then to develop a surrogate model $g$ which approximates f by training on previous data collected from evaluations of $f$.\\\\
-There are many ways for building a surrogate model. Just to name a few, we can use: radial basis functions, neural networks, random forests, support vector machines and Gaussian processes. It is worth noting that the nature of the function is not known a priori so usually it  is not clear \textit{which} surrogate model will be the most accurate.\\\\
+There are many ways for building a surrogate model. Just to name a few, we can use: response surfaces, neural networks, random forests, support vector machines and Gaussian processes. It is worth noting that the nature of the function is not known a priori so usually it  is not clear \textit{which} surrogate model will be the most accurate.\\\\
 The construction of a surrogate model can be seen as a three steps process:
 \begin{itemize}
 \item[1]\textbf{Sample selection}
@@ -40,14 +41,16 @@ The construction of a surrogate model can be seen as a three steps process:
 The accuracy of the surrogate depends on the number and location of samples in the design space. 
 \newpage
 
-\section*{Example} 
+
+\section*{Example 1 (Non linear ODE): Lotka-Volterra} 
 Let's consider the parametrized system of Lotka-Volterra equations: 
-\[
-\tag{1}
-\systeme*{\frac{dx}{dt} =(A-By)x, \frac{dy}{dt} = (Cx-D)y}
-\label{eqnlotka}
-\]
-This system is made up of two non linear differential equations. \\It can be solved numerically, but let's try to build the simplest possible surrogate model: a \textit{linear model}. \\Before diving into the overview of Julia implementation, it is worth noting that it cannot be expected that such a surrogate will work well, simply because it will try to model the system linearly, but \eqref{eqnlotka} is non- linear. \\\\
+\begin{equation}
+\begin{dcases}
+  \frac{dx}{dt} =(A-By)x,\\
+  \frac{dy}{dt} = (Cx-D)y\\
+\end{dcases}
+\end{equation}
+This system is made up of two non linear differential equations. \\It can be solved numerically, but let's try to build the simplest possible surrogate model: a \textit{linear model}. \\Before diving into the overview of Julia implementation, it is worth noting that it cannot be expected that such a surrogate will work well, simply because it will try to model the system linearly, but $(1)$ is non-linear. \\\\
 Our surrogate should work like this: with $[A,B,C,D]$ as input, we want to be able to calculate the solution $(x,y)$ at a time $t^*$.\\
 We proceed as follows: 
 
@@ -56,48 +59,205 @@ We proceed as follows:
 \item[2] Use the library $GLM$ to build a linear model out of the samples.
 \item[3] Use model to find solution at time $t^*$.
 \end{itemize}
+You can find the full implementation here: https://github.com/ludoro/Julia\_surrogate
 
+\section*{Example 2 (Stiff non linear ODE): Air pollution }
+\begin{align*} 
+\frac{d u_1}{dt} = &-p_1u_1 - p_{10}u_11 u_1 - p_{14}u_{1}u_6 - p_{23}u_1u_4-p_{23}u_{19}u_1 + \\
+			       &p_2u_2u_4 + p_3 u_5 u_2 + p_9u_{11}u_2+p_{11}u_{13}+p_{12}u_{10}u_2 +\\
+			  &+ p_{22}u_{19} + p_{25}+u_{20}\\
+\frac{d u_2}{dt}	= &-p_2u_2u_4 - p_3u_5u_2 -p_9u_{11}u_2 - p_{12}u_{10}u_2 + p_1u_1 + p_{21}u_{19}\\ 		
+\frac{d u_3}{dt} = & -p_{15}u_3 + p_1u_1 + p_{17}u_4 + p_{19}u_{16} + p_{22}u_{19} \\
+\frac{d u_4}{dt} = & -p_2u_2u_4 - p_16u_4 -p_17u_4 -p_{23}u_1u_4 + p_{15}u_3 \\
+\frac{d u_5}{dt} = & -p_3u_5u_2 + p_4u_7 + p_4u_7 + p_6u_7u_6 + p_7u_9 + p_{13}u_{14} + p_{20}u_{17}u_6 \\
+\frac{d u_6}{dt} = & -p_6u_7u_6 - p_8u_9u_6 - p_{14}u_1u_6 - p_{20} u_{17}u_6 + p_3u_5u_2 + p_{18}u_{16} + p_{18}u_{16} \\ 
+\frac{d u_7}{dt} = & -p_4u_7 + p_5 u_7 - p_6 u_7 u_6 + p_{13}u_{14}\\
+\frac{d u_8}{dt} = & +p_4u_7 + p_5u_7 + p_6u_7u_6 + p_7u_9 \\
+\frac{d u_9}{dt} = & -p_7u_9 - p_8u_9u_6 \\
+\frac{d u_{10}}{dt} = & -p_{12}u_{10}u_2 + p_7u_9 + p_9u_{11}u_2 \\
+\frac{d u_{11}}{dt} = & -p_9u_{11}u_2 - p_{10}u_{11}u_1 + p_8u_9u_6 + p_{11}u_{13}\\
+\frac{d u_{12}}{dt} = & +p_9u_{11}u_2 \\
+\frac{d u_{13}}{dt} = & -p_{11}u_{13} + p_{10}u_{11}u_1 \\
+\frac{d u_{14}}{dt} = & -p_{13}u_{14} + p_{12}u_{10}u_2 \\
+\frac{d u_{15}}{dt} = & +p_{14}u_1u_6 \\
+\frac{d u_{16}}{dt} = & -p_{18} u_{16} - p_{19}u_{16} + p_{16}u_4 \\
+\frac{d u_{17}}{dt} = & -p_{20}u_{17}u_6 \\
+\frac{d u_{18}}{dt} = & +p_{20}u_{17}u_6 \\ 
+\frac{d u_{19}}{dt} = & -p_{21}u_{19}-p_{22}u_{19} -p_{24}u_{19}u_1 + p_{23}u_1u_4 + p_{25}u_{20} \\
+\frac{d u_{20}}{dt} = & -p_{25} u_{20} + p_{24}+u_{19}u_1 \\
+\end{align*}
+The second example is a system of 20 non linear differential equation that simulates air pollution, it is a common benchmark problem.\\ The word \textit{stiff} means that certain methods for solving the equations are numerically unstable, unless the step size is extremely small. \\Building a surrogate that approximates the solution is then very useful.
+
+
+\section*{Example 3 (PDE): 2D Brusselator semilinear Heat equation}
+
+\begin{equation}
+\begin{dcases}
+  \pderiv{u}{t} = 1 + u^2v-Bu +\alpha \Delta u + f(x,y,z)\\
+  \pderiv{v}{dt} = Au - u^2v + \alpha \Delta v\\
+\end{dcases}
+\end{equation}
+The Brusselator is a theoretical model for a type of autocatalytic reaction.\\
+It can be transformed into a system of NxNx2 ordinary differential equations. The fully optimized numerical solution takes about 6 seconds when $N = 32$.  However, if N grows the computational time will grow to hours or even days. \\\\This example shows that a well optimized surrogate model is needed to drastically reduce computational time.
 
 %%2
 \chapter*{Proposal}
+My goal for this project is to develop a library for performing optimization with different surrogates model fully tested and with clear documentation. In the documentation, there will be a section containing lots of examples. 
+I feel this is the best way to help new users get acquainted with the library itself.\\\\
+The library will be extremely useful for a wide range of STEM professionals because in every field of science there are models that are too computational expensive that need to be approximated. I am sure this tool will make this problem easier to tackle.\\\\
+I am going to mainly focus on the following surrogates: \textbf{Response surfaces}, \textbf{Machine learning based surrogates} and \textbf{Gaussian Processes}. 
+
+\section*{Response surfaces}
+
+Suppose we have $n$ points $x_i$, for which we can calculate $y(x_i) = y_i$. It might be the case that $x_i$ multi dimensional with dimension $d$, so we could have: $x_i = (x_{i1},\ldots,x_{id})$. \\ Let $\{ \pi_k(x) \vert k = 1,\ldots,m\}$ a basis of polynomials of degree G. If we just tried to interpolate we would have a normal polynomial interpolation. Instead, we add $n$ basis functions terms, each centered around each sampled term. Then our predictor becomes: 
+
+$$ \hat y(x^*) = \sum_{k=1}^m a_k \pi_k (x^*) + \sum_{j=1}^n b_j\phi(x^*-x_j)$$
+
+Generally, basis functions are: 
+\begin{itemize}
+\item[1)] $\phi(z) = \Vert z \Vert $ (linear)
+\item[2)] $\phi(z) = \Vert z \Vert^3$ (cubic)
+\item[3)] $\phi(z) = \Vert z \Vert^2\log{\Vert z \Vert}$ (thin plate spline)
+\item[4)] $\phi(z) = \sqrt{\Vert z \Vert^2 + \lambda^2}$ (multi quadric)
+\item[5)] $\phi(z) = e^{-\sum_{l=1}^d\theta_l \vert z_l \vert^{p_l}}$ (Kriging)
+\end{itemize}
+To interpolate the data, we would need: 
+
+$$ y_i = \sum_{k=1}^m a_k \pi_k (x_i) + \sum_{j=1}^n b_j\phi(x_i-x_j)\text{  } i = 1,\ldots,n$$
+However, we have $n+m$ unknowns, so we need to add the following constraints as well: 
+
+$$ \sum_{j=1}^n b_k \pi_k(x_j) \text{  } k= 1,\ldots,m $$
+Adding these constraints and mixing polynomials with basis functions give the interpolator desirable properties.\\\\
+The algorithm would work as follows: we find the coefficient that interpolates the sampled points. Then, we minimize the response surface and we add that point to the set of sampled points. We keep going until the difference from one iteration to the other is non negligible. 
+However, if we use the basis functions from 1 to 4, we may incur in problems because they might fail to find the global minimum, but just a local minimum as seen in: \textit{A Taxonomy of Global Optimization Methods Based on Response Surfaces} by Donald Jones.\\\\
+Kriging stands out because it has a statistical interpretation: we can compute an interpolator as well as a measure of its possible error.
+We can then develop search methods that put some emphasis on sampling where this error is high. \\
+The kriging predictor is shown to be the predictor that minimizes the expected square prediction error, subject to being unbiased and being a linear function of predicted $y_i$'s.\\
+Suppose we want to make a prediction at a point $x$. Before we have sampled any points, we would be uncertain about its value. We model the uncertainty by saying that the value of the function at $x$ is like the realization of a random variable $Y(x)$ that is normally
+distributed with mean $\mu$ and variance $\sigma^2$. If we consider two points $x_i$ and $x_j$, assuming the sampled function is continuous, we can say: 
+\begin{equation}
+Corr[Y(x_i),Y(x_j)] = exp\Big( - \sum_{l=1}^d \theta_l \vert x_{il} - x_{jl} \vert^{pl}\Big)
+\end{equation}
+The $\theta_l$ parameter determines how fast the correlation drops off as one moves in the $l^{th}$ coordinate. Large values of $\theta_l$ serve to model functions that are highly active in the $l^{th}$ variable. The $pl$ determines the smoothness of the function in the  $l^{th}$ coordinate direction.\\\\
+We can then represent the uncertainty at the $n$ points using the random vector $\mathbf{Y} = ( Y(x_1), ... , Y(x_n))$.
+It has mean $\mathbf{1}\mu$ and $Cov(\mathbf{Y}) = \sigma^2 \mathbf{R}$, where each element of $\mathbf{R}$ is given by (1). \\
+To estimate the values of $\mu, \sigma^2, \theta_l$ and $pl$, we choose the parameters to maximize the likelihood of observed data. \\
+After some calculations, we get:
+
+\begin{equation}
+\hat \mu = \frac{\mathbf{1}' R^{-1}\mathbf{y}}{\mathbf{1}' R^{-1}\mathbf{1}} 
+\end{equation} 
+\begin{equation}
+\hat \sigma^2 = \frac{(\mathbf{y}-1\hat \mu)'\mathbf{R}^{-1}(\mathbf{y}-1\hat \mu)}{n} 
+\end{equation} 
+\begin{equation}
+-\frac{n}{2}log(\hat \sigma^2) -\frac{1}{2}\log{\vert \mathbf{R} \vert}
+\end{equation}
+In practice, we use the last equation to get estimates  $\hat \theta_l$ and $\hat pl$, then we use equations (2) and (3) to compute $\hat \mu$ and $\hat \sigma^2$
+Suppose we now want to predict a new point $x^*$. After some calculations, we get that: 
+\begin{equation}
+\hat y(x^*) = \hat \mu + \mathbf{r}' \mathbf{R}^{-1}(\mathbf{y} - \mathbf{1}\hat \mu)
+\end{equation}
+with $\mathbf{r} = (Corr[(Y(x^*),Y(x_1)], \ldots,Corr[(Y(x^*),Y(x_n)])$
 
 
+
+\section*{Machine learning based surrogates}
+There are a number of different algorithms that can be applied to learn nonlinear relationships. I will focus on Random forests regression algorithms and neural networks, mainly radial basis neural network. 
+For the first one, I plan on using the library "XGBoost.jl" which already has many functionalities implemented. It is the Julia interface with  XGBoost.  It is an efficient and scalable implementation of gradient boosting framework, parallelized using OpenMP. 
+It already includes tree learning algorithms which I plan to use.\\
+The main work here will be the integration between this library and the package Diffeq.\\\\
+Below, a mathematical explanation of what I plan to implement regarding NN's.
+
+\subsection*{Radial Basis Neural Network}
+Radial basis functions were introduced as a tool for interpolating multivariate functions. I will introduce the radial basis function for interpolation problems, then we see how they can be employed in neural networks. 
+Given a set of sampled points, we can use the following as an interpolation function:
+$$ f(x) = \sum_{i=1}^l w_i \phi(\Vert x - x_i \Vert)$$
+To calculate the weights $w_i$, the following system of equations needs to be solved: 
+$$\Phi w = y $$
+In order to employ radial basis functions in neural networks, techniques from regularization theory are employed. 
+Regularization techniques search for the approximating function f by minimizing a functional formed by two terms:
+\begin{equation}
+\Gamma(x,y) = \frac{1}{2}\sum_{i=1}^l[y_i - y(x_i)]^2 +\frac{1}{2}\lambda\Vert \Psi g \Vert^2
+\end{equation}
+where $\lambda > 0$ is a regularization parameter, $\Psi$ is a differentiable operator. \\
+The first term measures the distance between the approximating function and the terms in the training set, while the second term is comprised by a functional the penalizes the violation on some regularization terms on the function $g(\cdot)$.\\\\
+It can be proved that the function that solves (6) has the form: 
+\begin{equation}
+ f(x) = \sum_{i=1}^l w_i \phi(\Vert x - x_i \Vert)
+\end{equation}With $w$ solution of: 
+$$ (\Phi + \lambda I )w = y $$
+Equation (7) can be seen as the output of a feedforward neural network with an hidden layer.
+The neurons in the hidden layers will have as activation function $\phi$, which argument will be the distance between the input vector and the center associated with that neuron. In the output layer of this network there will be a single neuron that operates a weighted sum of the outputs of the hidden layers neurons.\\\\
+The training problem of a generalized RBF neural network can be formulated in a way similar to that of a 2-layer ANN. The strategy will be to train with supervised weights and non-supervised centers. That is, the centers are chosen among the the sampled points. 
+The training consists in solving:
+\begin{equation}
+min_{w}E(w) = \frac{1}{2}\sum_{i=1}^l (\sum_{j=1}^N w_j \phi(\Vert x_i - c_j \Vert) - y_i)^2 + \frac{\gamma}{2} \Vert w \Vert^2 
+\end{equation}
+where $\gamma$ is the regularization term for the weights. It is luckily possible to reformulate this problem: 
+$$ min_{w}E(w) = \Big\Vert \begin{bmatrix} \Phi(c) \\ \gamma^{\frac{1}{2}}\text{}\mathbf{I}\end{bmatrix}\mathbf{w} - \begin{bmatrix} y \\ 0 \end{bmatrix}\Big\Vert^2$$ 
+Which can be solved with least squares.
 %%3
+
+\section*{Gaussian processes}
+A gaussian process (GP) is a collection of indexed random variables such that every finite collection of those random variables has a multivariate normal distribution. The distribution if fully characterized by its mean function and its covariance function (kernel). They are useful for regression because not only we get a predicted value in a unknown region but also the confidence level of such a prediction. 
+There is a number of kernels we can choose from depending on the data we need to fit. The choice drastically influences the result.\\\\
+I will now give a brief overview on how they work, supposing I am just interested in a single output GP. 
+For convenience, we let the mean function be 0. If that is the case, the distribution of the model $f^{GP}(\theta)$
+is characterized by its covariance function. Let's choose the squared exponential:
+
+$$ cov(f^{GP}(\theta),f^{GP}(\theta') = c(\theta,\theta') := \sigma^2_c exp\Big[-\sum_{i=1}^p \frac{(\theta_i - \theta'_i)^2}{l^2_i} \Big] $$
+The vector of the parameters of the covariance function is denoted by $\psi$:
+$$ \psi = (\sigma_c, l_1, ... , l_p)$$
+They are usually called \textit{hyperparameters}.\\
+Given a training set $\mathcal{D}$, the hyperparameters are chosen by maximizing the logarithm of the marginal likelihood of the training values:
+
+$$ \psi^* = {arg\,max \,} log L (\psi \vert D) $$
+My work will be based on the \textit{Stheno.jl} and \textit{GaussianProcess.jl} libraries, which already have an implementation for GP's.
+
+In 
+
+
+
+   
 \chapter*{Timeline}
 
 \subsubsection*{6th May - 27th May -- Bonding time}
 
 \begin{itemize}
-\item[--] 
-\item[--] 
-\item[--] 
+\item[--] Study in depth the theory required to understand the algorithms to be employed.
+\item[--] Find and study in depth the libraries I will depend on for the project: mainly Flux and XGBoost.jl.
+\item[--] Start working on my proposal ahead of the three months period. 
 \end{itemize}
 
-\subsubsection*{28th May - 28th June -- }
+\subsubsection*{28th May - 28th June -- Response surfaces}
 
 \begin{itemize}
-\item[--] 
-\item[--] 
+\item[--] Work on surrogate based on Response surfaces. 
+\item[--] Start working on Machine learning based surrogates.
 \end{itemize}
 
-\subsubsection*{29th June - 26th July -- }
+\subsubsection*{29th June - 26th July -- ML based surrogates}
 
-From 28th of June to approximately 3th of July I will be under exams, therefore my output will be reduced in this timeline. \\
+From 28th of June to approximately 3th of July I will be under exams, therefore my output will be reduced. \\
 \begin{itemize}
-\item[--]
-\item[--] 
+\item[--] Finish work on ML based surrogates. This will take the majority of time because there are many of possible algorithms to implement.
 \end{itemize}
 
-\subsubsection*{27th July - 26th August -- }
-I have left more time than necessary in this last month to account for problems that might have occurred along the way. I will be on vocation for a few days with my girlfriend as well. \\
+\subsubsection*{27th July - 26th August -- Finish neural networks, documentation, examples. }
+I have left more time than necessary in this last month to account for problems that might have occurred along the way. I will be on vacation for a few days with my girlfriend as well. \\
 \begin{itemize}
-\item[--]
+\item[--] Finish ML based surrogates.
+\item[--] Write documentation and examples that serve as tutorials.
 \item[--] \textbf{Bonus:} Start developing surrogate models using Gaussian processes.
+
 \end{itemize}
 
 
 
 %% 4
+\begingroup
+\let\clearpage\relax
 \chapter*{About me}
 
 I am a third year applied mathematics student at Politecnico di Torino, Italy. I know how to code in Python, C, R, Matlab and Julia. I have a strong background in \textbf{Probability theory} and \textbf{statistics}, thanks to a \textit{measure theory} based course.\\\\ 
@@ -115,8 +275,7 @@ Contact information:
 \end{itemize}
  
  Contact information in case of emergency: +39 360882130 (Father).
+\endgroup
 \end{document}
-
-
 
 

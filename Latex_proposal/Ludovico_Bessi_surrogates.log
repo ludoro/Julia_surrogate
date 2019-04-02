@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.10.22)  23 MAR 2019 09:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.10.22)  2 APR 2019 14:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -240,34 +240,116 @@ Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 )
 Package: systeme 2018/01/01 v0.31 Mise en forme de systemes d'equations (CT)
 )
+(/usr/local/texlive/2018/texmf-dist/tex/latex/cool/cool.sty
+Package: cool 2006/12/29 v1.35 COntent Oriented LaTeX
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/coollist/coollist.sty
+Package: coollist 2009/09/20 v1.4 COntent Oriented LaTeX Lists
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2018/texmf-dist/tex/latex/coolstr/coolstr.sty
+Package: coolstr 2009/09/09 v2.2 COntent Oriented LaTeX Strings
+\c@COOL@strlen=\count119
+\c@COOL@strpointer=\count120
+\c@COOL@str@index=\count121
+\c@COOL@str@start=\count122
+\c@COOL@str@end=\count123
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/forloop/forloop.sty
+Package: forloop 2006/09/18 v3.0 For Loops for LaTeX
+)
+\c@COOL@listlen=\count124
+\c@COOL@listpointer=\count125
+\c@COOL@intsum=\count126
+\c@COOL@register@ct=\count127
+\c@COOL@register@len=\count128
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/bbm-macros/bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
+)
+\c@COOL@ct=\count129
+\c@COOL@ct@=\count130
+\c@COOL@multideriv=\count131
+\c@COOL@row=\count132
+\c@COOL@col=\count133
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count134
+\calc@Bcount=\count135
+\calc@Adimen=\dimen126
+\calc@Bdimen=\dimen127
+\calc@Askip=\skip66
+\calc@Bskip=\skip67
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count136
+\calc@Cskip=\skip68
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count137
+\l_MT_multwidth_dim=\dimen128
+\origjot=\skip69
+\l_MT_shortvdotswithinadjustabove_dim=\dimen129
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen130
+\l_MT_above_intertext_sep=\dimen131
+\l_MT_below_intertext_sep=\dimen132
+\l_MT_above_shortintertext_sep=\dimen133
+\l_MT_below_shortintertext_sep=\dimen134
+)
 (./Ludovico_Bessi_surrogates.aux)
 \openout1 = `Ludovico_Bessi_surrogates.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
-\scratchdimen=\dimen126
+\scratchcounter=\count138
+\scratchdimen=\dimen135
 \scratchbox=\box33
-\nofMPsegments=\count120
-\nofMParguments=\count121
+\nofMPsegments=\count139
+\nofMParguments=\count140
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count122
-\MPscratchDim=\dimen127
-\MPnumerator=\count123
-\makeMPintoPDFobject=\count124
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen136
+\MPnumerator=\count142
+\makeMPintoPDFobject=\count143
 \everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -325,106 +407,184 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count125
+\c@lstlisting=\count144
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
 
-[1
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 23.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
 
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 28--35
+Underfull \hbox (badness 10000) in paragraph at lines 29--36
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--35
+Underfull \hbox (badness 10000) in paragraph at lines 29--36
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--35
+Underfull \hbox (badness 10000) in paragraph at lines 29--36
 
  []
 
 [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 49--53
+Underfull \hbox (badness 10000) in paragraph at lines 52--56
 
  []
 
-[2] [3
+
+Overfull \hbox (47.99216pt too wide) in paragraph at lines 62--63
+\T1/cmr/m/n/10.95 You can find the full im-ple-men-ta-tion here: https://github
+.com/ludoro/Julia_surrogate 
+ []
+
+
+Overfull \hbox (2.39597pt too wide) detected at line 88
+[]
+ []
+
+[2]
+Overfull \vbox (13.22433pt too high) has occurred while \output is active []
+
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 99--102
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 105--109
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--109
+
+ []
+
+[5
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 83--84
+Underfull \hbox (badness 10000) in paragraph at lines 129--138
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
-
- []
-
-[4
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 101--106
+Underfull \hbox (badness 10000) in paragraph at lines 129--138
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--106
+Underfull \hbox (badness 10000) in paragraph at lines 140--146
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 166--171
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 182--186
 
  []
 
 
-Overfull \hbox (54.19186pt too wide) in paragraph at lines 101--106
+Underfull \hbox (badness 10000) in paragraph at lines 189--194
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 203--208
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--266
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--266
+
+ []
+
+
+Overfull \hbox (54.19186pt too wide) in paragraph at lines 261--266
 \T1/cmr/m/n/10.95 find my CV and more in-for-ma-tion about on my per-sonal webi
 te: https://ludoro.github.io 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--106
+Underfull \hbox (badness 10000) in paragraph at lines 261--266
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 108.
+[10
 
-(/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 268.
+
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 108.
- [5
-
-]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 268.
+ [11]
 (./Ludovico_Bessi_surrogates.aux) ) 
 Here is how much of TeX's memory you used:
- 5206 strings out of 492649
- 71034 string characters out of 6129621
- 151621 words of memory out of 5000000
- 8999 multiletter control sequences out of 15000+600000
- 15052 words of font info for 39 fonts, out of 8000000 for 9000
+ 6910 strings out of 492649
+ 98551 string characters out of 6129621
+ 207493 words of memory out of 5000000
+ 10646 multiletter control sequences out of 15000+600000
+ 19930 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,43p,475b,284s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,43p,501b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/en
 c/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2018/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/
+1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/
+public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/
-cm-super/sfbx1095.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm
--super/sfbx1440.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-s
-uper/sfbx2488.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-sup
-er/sfrm1095.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super
-/sfrm1200.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/s
-frm1728.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sft
-i1095.pfb>
-Output written on Ludovico_Bessi_surrogates.pdf (6 pages, 174541 bytes).
+ic/amsfonts/cm/cmr6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-sup
+er/sfbx1095.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super
+/sfbx1200.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/s
+fbx1440.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfb
+x2488.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfrm1
+095.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfrm120
+0.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfrm1728.
+pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfti1095.pf
+b>
+Output written on Ludovico_Bessi_surrogates.pdf (12 pages, 285216 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 120 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
