@@ -19,7 +19,7 @@
 \title{Accelerating optimization via machine learning with different surrogate models}
 \author{Ludovico Bessi}
 
-\date{23 March 2019}
+\date{3 April 2019}
 \maketitle
 
 
@@ -164,7 +164,7 @@ with $\mathbf{r} = (Corr[(Y(x^*),Y(x_1)], \ldots,Corr[(Y(x^*),Y(x_n)])$
 
 \section*{Machine learning based surrogates}
 There are a number of different algorithms that can be applied to learn nonlinear relationships. I will focus on Random forests regression algorithms and neural networks, mainly radial basis neural networks. 
-For the first one, I plan on using the library "XGBoost.jl" which already has many functionalities implemented. It is the Julia interface with  XGBoost.  It is an efficient and scalable implementation of gradient boosting framework, parallelized using OpenMP. \\I used this library for regression involving Lotka Volterra, as seen here: LINK DA AGGIUNGERE\\\\
+For the first one, I plan on using the library "XGBoost.jl" which already has many functionalities implemented. It is the Julia interface with  XGBoost.  It is an efficient and scalable implementation of gradient boosting framework, parallelized using OpenMP. \\I used this library for regression involving Lotka Volterra, as seen here: https://github.com/ludoro/Julia\_surrogate/blob/master/LK\_xgboost.jl\\\\
 The main work here will be the integration between this library and the package Diffeq.\\\\
 Below, a mathematical explanation of what I plan to implement regarding NN's.
 
