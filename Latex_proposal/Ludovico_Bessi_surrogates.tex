@@ -163,9 +163,8 @@ with $\mathbf{r} = (Corr[(Y(x^*),Y(x_1)], \ldots,Corr[(Y(x^*),Y(x_n)])$
 
 
 \section*{Machine learning based surrogates}
-There are a number of different algorithms that can be applied to learn nonlinear relationships. I will focus on Random forests regression algorithms and neural networks, mainly radial basis neural network. 
-For the first one, I plan on using the library "XGBoost.jl" which already has many functionalities implemented. It is the Julia interface with  XGBoost.  It is an efficient and scalable implementation of gradient boosting framework, parallelized using OpenMP. 
-It already includes tree learning algorithms which I plan to use.\\
+There are a number of different algorithms that can be applied to learn nonlinear relationships. I will focus on Random forests regression algorithms and neural networks, mainly radial basis neural networks. 
+For the first one, I plan on using the library "XGBoost.jl" which already has many functionalities implemented. It is the Julia interface with  XGBoost.  It is an efficient and scalable implementation of gradient boosting framework, parallelized using OpenMP. \\I used this library for regression involving Lotka Volterra, as seen here: LINK DA AGGIUNGERE\\\\
 The main work here will be the integration between this library and the package Diffeq.\\\\
 Below, a mathematical explanation of what I plan to implement regarding NN's.
 
@@ -213,9 +212,11 @@ They are usually called \textit{hyperparameters}.\\
 Given a training set $\mathcal{D}$, the hyperparameters are chosen by maximizing the logarithm of the marginal likelihood of the training values:
 
 $$ \psi^* = {arg\,max \,} log L (\psi \vert D) $$
-My work will be based on the \textit{Stheno.jl} and \textit{GaussianProcess.jl} libraries, which already have an implementation for GP's.
+My work will be based on the \textit{Stheno.jl} and \textit{GaussianProcess.jl} libraries, which already have an implementation for GP's.\\\\
+Using the \textit{GaussianProcesses} library, I built a GP to approximate the solution of Lotka Volterra. 
+Normally the system deals with 4 parameters, but it can be transformed in such a way that only a parameter is needed. In this way, I can employ a single input single output gaussian process, as seen here: 
+https://github.com/ludoro/Julia\_surrogate/blob/master/GP\_trial.jl
 
-In 
 
 
 
